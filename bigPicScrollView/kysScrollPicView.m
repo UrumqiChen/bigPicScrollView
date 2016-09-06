@@ -7,9 +7,8 @@
 //
 
 #import "kysScrollPicView.h"
-
+#import "UIView+UserData.h"
 @implementation kysScrollPicView
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -19,8 +18,14 @@
         CGFloat width = frame.size.width;
         CGFloat height = frame.size.height;
         _leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        _leftTiTle = [[UILabel alloc] initWithFrame:CGRectMake(0, height-30, width, 30)];
+        [_leftImageView addSubview:_leftTiTle];
         _centerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(width, 0, width, height)];
+        _centerTiTle = [[UILabel alloc] initWithFrame:CGRectMake(0, height-30, width, 30)];
+        [_centerImageView addSubview:_centerTiTle];
         _rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(width*2, 0, width, height)];
+        _rightTiTle = [[UILabel alloc] initWithFrame:CGRectMake(0, height-30, width, 30)];
+        [_rightImageView addSubview:_rightTiTle];
         _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         [self addSubview:_mainScrollView];
         _mainScrollView.delegate = self;
@@ -36,9 +41,11 @@
         _pageController = [[UIPageControl alloc] init];
         _pageController.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_pageController];
-        NSArray *pageLayoutH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_pageController]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_pageController)];
+        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:_pageController attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:_pageController attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
         NSArray *pageLayoutV = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_pageController(30)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_pageController)];
-        [self addConstraints:pageLayoutH];
+        [self addConstraint:left];
+        [self addConstraint:right];
         [self addConstraints:pageLayoutV];
         _imageList = [[NSMutableArray alloc] init];
         _currentIndex = 0;
@@ -59,7 +66,22 @@
     _time = nil;
     _time = [NSTimer scheduledTimerWithTimeInterval:_autoScrollTime target:self selector:@selector(autoScroll) userInfo:nil repeats:YES];
 }
-
+- (void)setPageControllerAlignment:(kysAlignment)alignment{
+    switch (alignment) {
+        case kysAlignmentLeft:
+            [_pageController setConstraintConstant:0 forAttribute:NSLayoutAttributeLeft];
+            [_pageController setConstraintConstant:-self.frame.size.width/2 forAttribute:NSLayoutAttributeRight];
+            break;
+        case kysAlignmentRight:
+            [_pageController setConstraintConstant:0 forAttribute:NSLayoutAttributeRight];
+            [_pageController setConstraintConstant:self.frame.size.width/2 forAttribute:NSLayoutAttributeLeft];
+            break;
+        default:
+            [_pageController setConstraintConstant:0 forAttribute:NSLayoutAttributeLeft];
+            [_pageController setConstraintConstant:0 forAttribute:NSLayoutAttributeRight];
+            break;
+    }
+}
 - (void)reloadImg{
     if (!_imageList||_imageList.count == 0) {
         return;
@@ -96,9 +118,14 @@
     if (!_imageList||_imageList.count == 0) {
         return;
     }
-    [_centerImageView sd_setImageWithURL:[NSURL URLWithString:_imageList[_currentIndex]]];
-    [_leftImageView sd_setImageWithURL:[NSURL URLWithString:_imageList[(_currentIndex + _imageList.count-1)%_imageList.count]]];
-    [_rightImageView sd_setImageWithURL:[NSURL URLWithString:_imageList[(_currentIndex + 1)%_imageList.count]]];
+    [_centerImageView sd_setImageWithURL:[NSURL URLWithString:[_imageList objectAtIndex:_currentIndex]]];
+    [_centerTiTle setText:[_titleList objectAtIndex:_currentIndex]];
+    NSInteger leftindex = (_currentIndex + _imageList.count-1)%_imageList.count;
+    [_leftImageView sd_setImageWithURL:[NSURL URLWithString:[_imageList objectAtIndex:leftindex]]];
+    [_leftTiTle setText:[_titleList objectAtIndex:leftindex]];
+    NSInteger rightindex = (_currentIndex + 1)%_imageList.count;
+    [_rightImageView sd_setImageWithURL:[NSURL URLWithString:[_imageList objectAtIndex:rightindex]]];
+    [_rightTiTle setText:[_titleList objectAtIndex:rightindex]];
 }
 -(void)refleshframe{
     _pageController.frame = CGRectMake(0, _baseSize.width*9/16 - 20, _baseSize.width, 20);

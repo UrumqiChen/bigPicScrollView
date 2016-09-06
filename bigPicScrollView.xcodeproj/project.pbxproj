@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		262E58560E81D0938F8F4F72 /* libPods-bigPicScrollView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C377F0B373915F8C285BC39B /* libPods-bigPicScrollView.a */; };
+		5647A44B1D7E8E4A00E693DC /* UIView+UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5647A44A1D7E8E4A00E693DC /* UIView+UserData.m */; };
 		56FA86D41D79758600005C96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FA86D31D79758600005C96 /* main.m */; };
 		56FA86D71D79758600005C96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FA86D61D79758600005C96 /* AppDelegate.m */; };
 		56FA86DA1D79758600005C96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FA86D91D79758600005C96 /* ViewController.m */; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		37A06F361FBEBF354195CC90 /* Pods-bigPicScrollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bigPicScrollView.release.xcconfig"; path = "Pods/Target Support Files/Pods-bigPicScrollView/Pods-bigPicScrollView.release.xcconfig"; sourceTree = "<group>"; };
+		5647A4491D7E8E4A00E693DC /* UIView+UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UserData.h"; sourceTree = "<group>"; };
+		5647A44A1D7E8E4A00E693DC /* UIView+UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UserData.m"; sourceTree = "<group>"; };
 		56FA86CF1D79758600005C96 /* bigPicScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bigPicScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FA86D31D79758600005C96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		56FA86D51D79758600005C96 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -126,6 +129,8 @@
 				56FA86D91D79758600005C96 /* ViewController.m */,
 				56FA87071D7976F100005C96 /* kysScrollPicView.h */,
 				56FA87081D7976F100005C96 /* kysScrollPicView.m */,
+				5647A4491D7E8E4A00E693DC /* UIView+UserData.h */,
+				5647A44A1D7E8E4A00E693DC /* UIView+UserData.m */,
 				56FA87051D7976AB00005C96 /* LaunchScreen.storyboard */,
 				56FA86DE1D79758600005C96 /* Assets.xcassets */,
 				56FA86E31D79758600005C96 /* Info.plist */,
@@ -352,6 +357,7 @@
 			files = (
 				56FA86DA1D79758600005C96 /* ViewController.m in Sources */,
 				56FA86D71D79758600005C96 /* AppDelegate.m in Sources */,
+				5647A44B1D7E8E4A00E693DC /* UIView+UserData.m in Sources */,
 				56FA87091D7976F100005C96 /* kysScrollPicView.m in Sources */,
 				56FA86D41D79758600005C96 /* main.m in Sources */,
 			);
