@@ -20,14 +20,17 @@
         _leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         _leftTiTle = [[UILabel alloc] initWithFrame:CGRectMake(0, height-30, width, 30)];
         [_leftImageView addSubview:_leftTiTle];
+        [_leftTiTle setHidden:NO];
         _centerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(width, 0, width, height)];
         _centerTiTle = [[UILabel alloc] initWithFrame:CGRectMake(0, height-30, width, 30)];
         [_centerImageView addSubview:_centerTiTle];
+        [_centerTiTle setHidden:NO];
         _rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(width*2, 0, width, height)];
         _rightTiTle = [[UILabel alloc] initWithFrame:CGRectMake(0, height-30, width, 30)];
         [_rightImageView addSubview:_rightTiTle];
         _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         [self addSubview:_mainScrollView];
+        [_rightTiTle setHidden:NO];
         _mainScrollView.delegate = self;
         _mainScrollView.contentSize = CGSizeMake(3*width, height);
         [_mainScrollView setContentOffset:CGPointMake(width, 0) animated:NO];
@@ -71,14 +74,29 @@
         case kysAlignmentLeft:
             [_pageController setConstraintConstant:0 forAttribute:NSLayoutAttributeLeft];
             [_pageController setConstraintConstant:-self.frame.size.width/2 forAttribute:NSLayoutAttributeRight];
+            _leftTiTle.textAlignment = NSTextAlignmentRight;
+            _centerTiTle.textAlignment = NSTextAlignmentRight;
+            _rightTiTle.textAlignment = NSTextAlignmentRight;
+            [_leftTiTle setHidden:NO];
+            [_centerTiTle setHidden:NO];
+            [_rightTiTle setHidden:NO];
             break;
         case kysAlignmentRight:
             [_pageController setConstraintConstant:0 forAttribute:NSLayoutAttributeRight];
             [_pageController setConstraintConstant:self.frame.size.width/2 forAttribute:NSLayoutAttributeLeft];
+            _leftTiTle.textAlignment = NSTextAlignmentLeft;
+            _centerTiTle.textAlignment = NSTextAlignmentLeft;
+            _rightTiTle.textAlignment = NSTextAlignmentLeft;
+            [_leftTiTle setHidden:NO];
+            [_centerTiTle setHidden:NO];
+            [_rightTiTle setHidden:NO];
             break;
         default:
             [_pageController setConstraintConstant:0 forAttribute:NSLayoutAttributeLeft];
             [_pageController setConstraintConstant:0 forAttribute:NSLayoutAttributeRight];
+            [_leftTiTle setHidden:YES];
+            [_centerTiTle setHidden:YES];
+            [_rightTiTle setHidden:YES];
             break;
     }
 }

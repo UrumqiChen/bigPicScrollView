@@ -20,8 +20,8 @@
     kysScrollPicView *view = [[kysScrollPicView alloc] initWithFrame:CGRectMake(0,20, width, width*9/16)];
     [view setDelegate:self];
     [view setAutoScrollTime:5];
-    [view setCurrentPageIndicatorColor:[UIColor redColor] otherPageIndicator:[UIColor grayColor]];
-    [view setPageControllerAlignment:kysAlignmentRight];
+    [view setCurrentPageIndicatorColor:[UIColor greenColor] otherPageIndicator:[UIColor grayColor]];
+    [view setPageControllerAlignment:kysAlignmentLeft];
     [self.view addSubview:view];
     NSArray *array = @[@"http://img1.imgtn.bdimg.com/it/u=3755821029,4244946914&fm=21&gp=0.jpg",@"http://img4.imgtn.bdimg.com/it/u=3935105319,1037389709&fm=21&gp=0.jpg",@"http://img3.imgtn.bdimg.com/it/u=766437667,1744761512&fm=21&gp=0.jpg",@"http://img3.imgtn.bdimg.com/it/u=1952920096,2449558095&fm=21&gp=0.jpg",@"http://img3.imgtn.bdimg.com/it/u=3766162482,4008376723&fm=21&gp=0.jpg",@"http://img4.imgtn.bdimg.com/it/u=2357026344,3429114932&fm=21&gp=0.jpg",@"http://img1.imgtn.bdimg.com/it/u=515225603,3572718824&fm=21&gp=0.jpg"];
     [view setDatasWithTitleArray:@[@"adsad",@"asdasdad",@"ooooooo",@"asdasdadsa",@"adsadasda",@"nioninkjnj",@"sadnklsankdlnaklsd"] imageArray:array];
