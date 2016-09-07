@@ -10,7 +10,8 @@
 设置点的对其方式<br>
     [view setPageControllerAlignment:kysAlignmentLeft];<br>
 设置数据标题和图片地址<br>
-- (void)setDatasWithTitleArray:(NSArray *)titleArray imageArray:(NSArray *)imageArray;<br>
+(void)setDatasWithTitleArray:(NSArray *)titleArray imageArray:(NSArray *)imageArray;<br>
 代理<br>
-  点击时返回所在数据index<br>
-  -(void)clickPicWithindex:(NSInteger)index；<br>
+    点击时返回所在数据index<br>
+    (void)clickPicWithindex:(NSInteger)index；<br>
+    
